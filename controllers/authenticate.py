@@ -1,14 +1,13 @@
-from OpenSchool import app
+from flask_restful import Resource
 from helpers import client_secret
-from helpers.errors import ValidationErrors
-from forms import authentication
-from helpers.responses import ErrorResponses
+from validation.authentication import get_session_key_validator
 
 
-@app.route('/authenticate/get_session_key', methods=['post'])
-def get_session_key():
-    _input = authentication.GetSessionForm()
-    if not _input.validate():
-        return ErrorResponses.required_fields_missing(ValidationErrors.field_errors(_input))
+class Authenticate(Resource):
+    def get(self):
+        return 'test'
 
-    return client_secret.ClientSecret.generate()
+    def post(self):
+        args = get_session_key_validator().parse_args()
+        print(args)
+        return client_secret.ClientSecret.generate()
