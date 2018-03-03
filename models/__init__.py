@@ -12,3 +12,14 @@ from .room import Room
 from .studentClass import StudentClass
 from .userGroup import UserGroup
 from .user import User
+
+from .branchAddress import BranchAddress
+from .groupUser import UserGroup
+from .userAddress import UserAddress
+from .userBranch import UserBranch
+from .userGroupStudentClass import UserGroupStudentClass
+from .userGroupUser import UserGroupUser
+from .userOrganisation import UserOrganisation
+from .userRelation import UserRelation
+from .userRole import UserRole
+from .userStudentClass import UserStudentClass
