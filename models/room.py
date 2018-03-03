@@ -3,9 +3,12 @@ from OpenSchool import db
 from datetime import datetime
 from helpers.uuid import UuidField
 
+
 class Room(db.Model):
     id = db.Column(UuidField, unique=True, nullable=False, default=uuid4().hex, primary_key=True)
     name = db.Column(db.String(255), unique=False, nullable=False)
+
+    branch_id = db.Column(UuidField, db.ForeignKey('branch.id'), nullable=False)
 
     floor = db.Column(db.String(255), unique=False, nullable=True)
     number = db.Column(db.String(255), unique=False, nullable=True)

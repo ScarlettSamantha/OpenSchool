@@ -10,4 +10,6 @@ class Authentication(db.Model):
     note = db.Column(db.Text, unique=False, nullable=True)
     is_blocked = db.Column(db.Boolean, default=False, nullable=False, unique=False)
 
+    user_id = db.Column(UuidField, db.ForeignKey('user.id'), nullable=False)
+
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)

@@ -15,6 +15,10 @@ class UserStudentClass(db.Model):
     user_id = db.Column(UuidField, db.ForeignKey('user.id'))
     studentClass_id = db.Column(UuidField, db.ForeignKey('student_class.id'))
 
+    attendance_reasons_id = db.Column(UuidField, db.ForeignKey('attendance_reason.id'), nullable=False)
+
+    note = db.Column(db.Text, nullable=True, unique=False)
+
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     date_updated = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)
 
