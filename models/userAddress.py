@@ -18,5 +18,5 @@ class UserAddress(db.Model):
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     date_updated = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)
 
-    user = relationship(User, backref=backref("orders", cascade="all, delete-orphan"))
-    address = relationship(Address, backref=backref("orders", cascade="all, delete-orphan"))
+    user = relationship(User, backref=backref("addresses", cascade="all, delete-orphan"))
+    address = relationship(Address, backref=backref("users", cascade="all, delete-orphan"))
