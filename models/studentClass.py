@@ -16,8 +16,8 @@ class StudentClass(db.Model):
     is_cancelt = db.Column(db.Boolean, default=False)
     is_attendance_required = db.Column(db.Boolean, default=True)
 
-    default_room = db.Column(UuidField, db.ForeignKey('room.id'), nullable=False)
-    current_room = db.Column(UuidField, db.ForeignKey('room.id'), nullable=True)
+    defaultRoom_id = db.Column(UuidField, db.ForeignKey('room.id'), nullable=False)
+    currentRoom_id = db.Column(UuidField, db.ForeignKey('room.id'), nullable=True)
 
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     date_updated = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)

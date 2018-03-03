@@ -18,8 +18,8 @@ class Assignment(db.Model):
     note = db.Column(db.Text, nullable=True)
 
     assignmentGroup_id = db.Column(UuidField, db.ForeignKey('assignment_group.id'), nullable=False)
-    class_start = db.Column(UuidField, db.ForeignKey('student_class.id'), nullable=False)
-    class_due = db.Column(UuidField, db.ForeignKey('student_class.id'), nullable=False)
+    classStart_id = db.Column(UuidField, db.ForeignKey('student_class.id'), nullable=False)
+    classDue_id = db.Column(UuidField, db.ForeignKey('student_class.id'), nullable=False)
 
     date_started = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
     date_due = db.Column(db.DateTime, nullable=True)
