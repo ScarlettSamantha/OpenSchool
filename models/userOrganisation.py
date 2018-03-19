@@ -1,6 +1,4 @@
 from datetime import datetime
-from .user import User
-from .organisation import Organisation
 from OpenSchool import db
 from uuid import uuid4
 from sqlalchemy.orm import relationship, backref
@@ -18,5 +16,5 @@ class UserOrganisation(db.Model):
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     date_updated = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)
 
-    user = relationship(User, backref=backref("organisations", cascade="all, delete-orphan"))
-    organisation = relationship(Organisation, backref=backref("users", cascade="all, delete-orphan"))
+    user = relationship('User', backref=backref("organisations", cascade="all, delete-orphan"))
+    organisation = relationship('Organisation', backref=backref("users", cascade="all, delete-orphan"))

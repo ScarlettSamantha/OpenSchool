@@ -1,5 +1,6 @@
 from sqlalchemy.types import TypeDecorator, CHAR
 from sqlalchemy.dialects.postgresql import UUID
+from OpenSchool import db
 import uuid
 
 class Uuid():
@@ -34,7 +35,13 @@ class UuidField(TypeDecorator):
             return str(value)
         else:
             if not isinstance(value, uuid.UUID):
-                return "%.32x" % uuid.UUID(value).__int__()
+                # Add this for support so we can just throw a model in it.
+                if isinstance(value, db.Model):
+                    if hasattr(value, '__ID_FIELD__'):
+                        value = getattr(value, getattr(value, '__ID_FIELD__'))
+                    elif hasattr(value, 'id'):
+                        value = getattr(value, 'id')
+                return "%.32x" % uuid.UUID(hex=value).__int__()
             else:
                 # hexstring
                 return "%.32x" % value.__int__()

@@ -19,6 +19,6 @@ class UserRelation(db.Model):
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     date_updated = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)
 
-    student = relationship(User, backref=backref("relation", cascade="all, delete-orphan"))
-    relation = relationship(User, backref=backref("student", cascade="all, delete-orphan"))
+    student = relationship(User, foreign_keys=[student_id], backref=backref("relation", cascade="all, delete-orphan"))
+    relation = relationship(User, foreign_keys=[relation_id], backref=backref("student", cascade="all, delete-orphan"))
     relationType = relationship(RelationType)

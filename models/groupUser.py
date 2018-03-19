@@ -18,5 +18,5 @@ class GroupUser(db.Model):
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     date_updated = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)
 
-    user = relationship(User, backref=backref("groups", cascade="all, delete-orphan"))
-    group = relationship(UserGroup, backref=backref("users", cascade="all, delete-orphan"))
+    user = relationship(User, backref=backref("group", cascade="all, delete-orphan"))
+    group = relationship(UserGroup, backref=backref("user", cascade="all, delete-orphan"))
