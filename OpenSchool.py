@@ -17,13 +17,8 @@ from models import *
 from commands import *
 from controllers import *
 
-api.add_resource(authenticate.Authenticate, '/authenticate/get_session_key')
-
-@app.cli.command()
-def test():
-    user = User(username='test', password='123', email='test@test.nl', first_name='scarlett', last_name='verheul')
-    db_session.add(user)
-    db_session.commit()
+api.add_resource(authenticate.Authenticate, '/authenticate/<user_id>/<user_secret>/list/', endpoint='index_keys')
+api.add_resource(authenticate.Authenticate, '/authenticate/<user_id>/<user_secret>/generate/', endpoint='create_key')
 
 if __name__ == '__main__':
     app.run()

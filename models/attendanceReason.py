@@ -4,7 +4,7 @@ from datetime import datetime
 from helpers.uuid import UuidField
 
 class AttendanceReason(db.Model):
-    id = db.Column(UuidField, unique=True, nullable=False, default=uuid4().hex, primary_key=True)
+    id = db.Column(UuidField, unique=True, nullable=False, default=uuid4, primary_key=True)
     name = db.Column(db.String(255), unique=False, nullable=False)
 
     allowed = db.Column(db.Boolean, unique=False, default=True, nullable=False)

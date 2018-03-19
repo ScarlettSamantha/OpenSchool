@@ -4,7 +4,7 @@ from datetime import datetime
 from helpers.uuid import UuidField
 
 class StudentClass(db.Model):
-    id = db.Column(UuidField, unique=True, nullable=False, default=uuid4().hex, primary_key=True)
+    id = db.Column(UuidField, unique=True, nullable=False, default=uuid4, primary_key=True)
     name = db.Column(db.String(255), unique=False, nullable=False)
 
     tax = db.Column(db.String(255), unique=False, nullable=True)

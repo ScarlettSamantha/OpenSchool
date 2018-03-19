@@ -4,7 +4,7 @@ from datetime import datetime
 from helpers.uuid import UuidField
 
 class Address(db.Model):
-    id = db.Column(UuidField, unique=True, nullable=False, default=uuid4().hex, primary_key=True)
+    id = db.Column(UuidField, unique=True, nullable=False, default=uuid4, primary_key=True)
 
     line1 = db.Column(db.String(255), unique=False, nullable=True)
     line2 = db.Column(db.String(255), unique=False, nullable=True)

@@ -10,7 +10,7 @@ from helpers.uuid import UuidField
 class UserStudentClass(db.Model):
     __tablename__ = 'user_has_class'
 
-    id = db.Column(UuidField, unique=True, nullable=False, default=uuid4().hex, primary_key=True)
+    id = db.Column(UuidField, unique=True, nullable=False, default=uuid4, primary_key=True)
 
     user_id = db.Column(UuidField, db.ForeignKey('user.id'))
     studentClass_id = db.Column(UuidField, db.ForeignKey('student_class.id'))

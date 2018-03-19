@@ -1,12 +1,12 @@
 from uuid import uuid4
 from OpenSchool import db
+from helpers.crud import Crud
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from helpers.uuid import UuidField
 
-
-class Authentication(db.Model):
-    key = db.Column(UuidField, unique=True, nullable=False, default=uuid4().hex, primary_key=True)
+class Authentication(db.Model, Crud):
+    key = db.Column(UuidField, unique=True, nullable=False, default=uuid4, primary_key=True)
     expiration = db.Column(db.DateTime, unique=False, nullable=True)
 
     note = db.Column(db.Text, unique=False, nullable=True)

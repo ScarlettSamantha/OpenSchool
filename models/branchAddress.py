@@ -10,7 +10,7 @@ from helpers.uuid import UuidField
 class BranchAddress(db.Model):
     __tablename__ = 'branch_has_address'
 
-    id = db.Column(UuidField, unique=True, nullable=False, default=uuid4().hex, primary_key=True)
+    id = db.Column(UuidField, unique=True, nullable=False, default=uuid4, primary_key=True)
 
     branch_id = db.Column(UuidField, db.ForeignKey('branch.id'))
     address_id = db.Column(UuidField, db.ForeignKey('address.id'))

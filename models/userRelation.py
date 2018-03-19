@@ -10,7 +10,7 @@ from helpers.uuid import UuidField
 class UserRelation(db.Model):
     __tablename__ = 'user_has_relation'
 
-    id = db.Column(UuidField, unique=True, nullable=False, default=uuid4().hex, primary_key=True)
+    id = db.Column(UuidField, unique=True, nullable=False, default=uuid4, primary_key=True)
 
     student_id = db.Column(UuidField, db.ForeignKey('user.id'))
     relation_id = db.Column(UuidField, db.ForeignKey('user.id'))

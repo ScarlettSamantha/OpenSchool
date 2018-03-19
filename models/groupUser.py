@@ -10,7 +10,7 @@ from helpers.uuid import UuidField
 class GroupUser(db.Model):
     __tablename__ = 'group_has_user'
 
-    id = db.Column(UuidField, unique=True, nullable=False, default=uuid4().hex, primary_key=True)
+    id = db.Column(UuidField, unique=True, nullable=False, default=uuid4, primary_key=True)
 
     user_id = db.Column(UuidField, db.ForeignKey('user.id'))
     userGroup_id = db.Column(UuidField, db.ForeignKey('user_group.id'))

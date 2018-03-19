@@ -4,7 +4,7 @@ from datetime import datetime
 from helpers.uuid import UuidField
 
 class Grade(db.Model):
-    id = db.Column(UuidField, unique=True, nullable=False, default=uuid4().hex, primary_key=True)
+    id = db.Column(UuidField, unique=True, nullable=False, default=uuid4, primary_key=True)
 
     is_group_grade = db.Column(db.Boolean, unique=False, default=False)
 
