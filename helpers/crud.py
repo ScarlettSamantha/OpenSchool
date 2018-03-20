@@ -1,4 +1,6 @@
 from OpenSchool import db
+from sqlalchemy.exc import IntegrityError
+from helpers.errors import get_voilating_field_from_sql_exception
 
 class Crud(object):
 

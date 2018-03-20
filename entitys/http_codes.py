@@ -1,6 +1,7 @@
 class HttpResponseCodes:
 
     OK = 200
+
     ACCESS_DENIED = 403
     RESOURCE_NOT_FOUND = 404
     # Should be used then resource already exists.

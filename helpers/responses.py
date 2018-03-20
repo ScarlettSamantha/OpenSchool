@@ -20,6 +20,7 @@ class ErrorResponses:
     REQUIRED_FIELD_ERROR_PATTERN = "%s is missing from the form data \r\n"
     RESOURCE_NOT_FOUND_ERROR_PATTERN = '%s requested resource could not be found'
     RESOURCE_ALREADY_EXISTS_ERROR_PATTERN = '%s already exists with the given parameters.'
+    RESOURCE_FIELD_NOT_UNIQUE = 'field %s of resource %s is not unique'
     ERROR_ID_DEFAULT = 'None'
 
     @classmethod
@@ -45,7 +46,17 @@ class ErrorResponses:
                                       ResponseErrorIdentifiers.ALREADY_EXISTS)
         return error_response
 
-    # We use code 413 here as code 412 does not return a response body.
+    @classmethod
+    def entity_not_unique(cls, resource, field: str):
+        if not isinstance(resource, str):
+            resource = resource.__class__
+        error_response = cls.json_err(cls.RESOURCE_FIELD_NOT_UNIQUE % (field, resource),
+                                      HttpResponseCodes.CONFLICT,
+                                      ResponseErrorIdentifiers.POST_UNIQUE_FIELD_CONFLICT)
+        return error_response
+
+
+# We use code 413 here as code 412 does not return a response body.
     # @todo https://github.com/pallets/werkzeug/issues/1231
     @classmethod
     def required_fields_missing(cls, err_or_fields: list, code=HttpResponseCodes.ENTITY_TO_LARGE):
