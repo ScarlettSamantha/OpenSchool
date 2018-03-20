@@ -3,8 +3,9 @@ from OpenSchool import db
 from models.userOrganisation import UserOrganisation
 from datetime import datetime
 from helpers.uuid import UuidField
+from helpers.crud import Crud
 
-class Organisation(db.Model):
+class Organisation(db.Model, Crud):
     id = db.Column(UuidField, unique=True, nullable=False, default=uuid4, primary_key=True)
     name = db.Column(db.String(255), unique=False, nullable=False)
 
@@ -18,3 +19,4 @@ class Organisation(db.Model):
         link_obj = UserOrganisation.link_obj(user_obj=user, organisation_obj=self)
         link_obj.save()
         return link_obj
+

@@ -9,7 +9,6 @@ from models import Authentication, Organisation
 from .userOrganisation import UserOrganisation
 from dateutil.relativedelta import relativedelta
 from sqlalchemy import or_
-from sqlalchemy.orm import relationship
 
 
 class User(db.Model, Crud):
@@ -88,14 +87,10 @@ class User(db.Model, Crud):
             .first()
         return result
 
-    @staticmethod
-    def from_token(token: str):
-        return User.query.join(Authentication).filter(Authentication.key == token).first()
+    @classmethod
+    def from_token(cls, token: str):
+        return cls.query.join(Authentication).filter(Authentication.key == token).first()
 
-    @staticmethod
-    def from_id(user_id: str):
-        return User.query.filter(User.id == user_id).first()
-
-    @staticmethod
-    def from_password(password: str):
-        return User.query.filter(User.password == password).first()
+    @classmethod
+    def from_password(cls, password: str):
+        return cls.query.filter(User.password == password).first()
