@@ -31,8 +31,7 @@ class Users(Resource):
 class Link(Resource):
     @authentication_required
     def post(self, organisation_id, user_id):
-        num = UserOrganisation.find(user_id, organisation_id)
-        if num is None:
+        if UserOrganisation.find(user_id, organisation_id) is None:
             link_obj = UserOrganisation.link(user_id, organisation_id)
             link_obj.save()
         else:
