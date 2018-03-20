@@ -17,8 +17,8 @@ from models import *
 from commands import *
 from controllers import *
 
-api.add_resource(authenticate.Authenticate, '/authenticate/<user_id>/<user_secret>/list/', endpoint='index_keys')
-api.add_resource(authenticate.Authenticate, '/authenticate/<user_id>/<user_secret>/generate/', endpoint='create_key')
+api.add_resource(authenticate.List, '/api/v1.0/user/<user_id>/authenticate/<user_secret>/keys/', endpoint='list_keys')
+api.add_resource(authenticate.Generate, '/api/v1.0/user/<user_id>/authenticate/<user_secret>/key/', endpoint='create_key')
 
 if __name__ == '__main__':
     app.run()

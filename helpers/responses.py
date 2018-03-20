@@ -4,7 +4,6 @@ from entitys.http_codes import HttpResponseCodes
 
 
 class ErrorResponses:
-
     DEFAULT_ACCESS_DENIED_ERROR = 'Access Denied'
     REQUIRED_FIELD_ERROR_PATTERN = "%s is missing from the form data \r\n"
     RESOURCE_NOT_FOUND_ERROR_PATTERN = '%s requested resource could not be found'
@@ -19,8 +18,9 @@ class ErrorResponses:
     def four_o_four(cls, resource_name):
         if not isinstance(resource_name, str):
             resource_name = resource_name.__class__
-        error_response = cls.json_err(cls.RESOURCE_NOT_FOUND_ERROR_PATTERN % resource_name, HttpResponseCodes.RESOURCE_NOT_FOUND,
-                            ResponseErrorIdentifiers.COULD_NOT_FIND_RESOURCE)
+        error_response = cls.json_err(cls.RESOURCE_NOT_FOUND_ERROR_PATTERN % resource_name,
+                                      HttpResponseCodes.RESOURCE_NOT_FOUND,
+                                      ResponseErrorIdentifiers.COULD_NOT_FIND_RESOURCE)
         return error_response
 
     # We use code 413 here as code 412 does not return a response body.
@@ -46,5 +46,3 @@ class ErrorResponses:
         })
         response.status_code = err_code
         return response
-
-
