@@ -40,9 +40,7 @@ class Link(Resource):
         return Responses.operation_completed()
 
     @authentication_required
-    def delete(self, organisation_id, user_id):
-        link_obj = UserOrganisation.find(user_id, organisation_id)
-        if link_obj is None:
+    def delete(self, organisation_id: str, user_id: str):
+        if False == UserOrganisation.unlink(user_id, organisation_id):
             return ErrorResponses.four_o_four('User-organisation link')
-        link_obj.delete()
         return Responses.operation_completed()

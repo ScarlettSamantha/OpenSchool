@@ -33,5 +33,11 @@ class UserOrganisation(db.Model, Crud):
 
     @classmethod
     def link(cls, user_id:str, organisation_id:str) -> 'UserOrganisation':
-        linkObj = cls(user_id=user_id, organisation_id=organisation_id)
-        return linkObj
+        return cls(user_id=user_id, organisation_id=organisation_id)
+
+    @classmethod
+    def unlink(cls, user_id: str, organisation_id: str):
+        obj = cls.find(user_id, organisation_id=organisation_id)
+        if obj is None:
+            return False
+        return obj.delete()
