@@ -1,6 +1,8 @@
 from flask_restful import Resource, marshal
 from responses.organisation import full_fields, index_fields
 from responses.user import index_fields as user_index_fields
+from helpers.responses import Responses, ErrorResponses
+
 from models import Organisation, UserOrganisation, User
 from helpers.security import authentication_required
 
@@ -24,3 +26,23 @@ class Users(Resource):
     def get(self, organisation_id):
         users = User.query.join(UserOrganisation).filter(UserOrganisation.organisation_id == organisation_id).all()
         return marshal(users, user_index_fields)
+
+
+class Link(Resource):
+    @authentication_required
+    def post(self, organisation_id, user_id):
+        num = UserOrganisation.find(user_id, organisation_id)
+        if num is None:
+            link_obj = UserOrganisation.link(user_id, organisation_id)
+            link_obj.save()
+        else:
+            return ErrorResponses.entity_already_exists('User-organisation link')
+        return Responses.operation_completed()
+
+    @authentication_required
+    def delete(self, organisation_id, user_id):
+        link_obj = UserOrganisation.find(user_id, organisation_id)
+        if link_obj is None:
+            return ErrorResponses.four_o_four('User-organisation link')
+        link_obj.delete()
+        return Responses.operation_completed()

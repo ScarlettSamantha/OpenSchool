@@ -26,6 +26,7 @@ api.add_resource(user.Entity, '/api/v1.0/user/<user_id>/', endpoint='get_user')
 api.add_resource(organisation.Index, '/api/v1.0/organisations/', endpoint='list_organisations')
 api.add_resource(organisation.Entity, '/api/v1.0/organisation/<organisation_id>/', endpoint='get_organisation')
 api.add_resource(organisation.Users, '/api/v1.0/organisation/<organisation_id>/users', endpoint='get_organisation_users')
+api.add_resource(organisation.Link, '/api/v1.0/organisation/<organisation_id>/user/<user_id>/link/', endpoint='link_organisation_users')
 
 if __name__ == '__main__':
     app.run()

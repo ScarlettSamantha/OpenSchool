@@ -21,6 +21,13 @@ class UserOrganisation(db.Model, Crud):
     organisation = relationship('Organisation', backref=backref("users", cascade="all, delete-orphan"))
 
     @classmethod
+    def find(cls, user_id, organisation_id) -> 'UserOrganisation':
+        return cls.query\
+            .filter(UserOrganisation.user_id == user_id)\
+            .filter(UserOrganisation.organisation_id == organisation_id)\
+            .first()
+
+    @classmethod
     def link_obj(cls, user_obj:'User', organisation_obj:'Organisation') -> 'UserOrganisation':
         return cls.link(user_id=user_obj.id, organisation_id=organisation_obj.id)
 
