@@ -4,3 +4,4 @@ sqlalchemy
 flask
 flask_sqlalchemy
 flask-restful
+flask-httpauth

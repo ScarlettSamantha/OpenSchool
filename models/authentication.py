@@ -23,3 +23,7 @@ class Authentication(db.Model, Crud):
 
     def never_expire(self):
         self.expires_in(relativedelta(years=100))
+
+    @classmethod
+    def validate(cls, token: str) -> bool:
+        return bool(cls.query.filter_by(key=token).count())

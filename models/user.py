@@ -87,3 +87,15 @@ class User(db.Model, Crud):
             .filter(or_(User.password == secret, User.secret == secret))\
             .first()
         return result
+
+    @staticmethod
+    def from_token(token: str):
+        return User.query.join(Authentication).filter(Authentication.key == token).first()
+
+    @staticmethod
+    def from_id(user_id: str):
+        return User.query.filter(User.id == user_id).first()
+
+    @staticmethod
+    def from_password(password: str):
+        return User.query.filter(User.password == password).first()

@@ -1,6 +1,10 @@
 from flask_restful import fields
 
-fields = {
+index_fields = {
+    'key': fields.String
+}
+
+full_fields = {
     'key': fields.String,
     'belongs_to': fields.String(attribute='user_id'),
     'is_blocked': fields.Boolean,

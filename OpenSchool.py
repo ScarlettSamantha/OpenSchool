@@ -20,5 +20,8 @@ from controllers import *
 api.add_resource(authenticate.List, '/api/v1.0/user/<user_id>/authenticate/<user_secret>/keys/', endpoint='list_keys')
 api.add_resource(authenticate.Generate, '/api/v1.0/user/<user_id>/authenticate/<user_secret>/key/', endpoint='create_key')
 
+api.add_resource(user.Index, '/api/v1.0/users/', endpoint='list_users')
+api.add_resource(user.Entity, '/api/v1.0/user/<user_id>/', endpoint='get_user')
+
 if __name__ == '__main__':
     app.run()
